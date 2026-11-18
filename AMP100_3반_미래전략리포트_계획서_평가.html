@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMP100 3반 계획서 평가</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f5f2; --surface:#ffffff; --surface2:#f0eee9; --text:#1d1d1f; --muted:#5f6368; --line:#e2dfd8;
+  --accent:#1f4e78; --accent-soft:#e3ecf5; --good:#2e7d4f; --good-soft:#e4f2e9; --warn:#a15c00; --warn-soft:#fbefdc;
+  --bad:#b3261e; --bad-soft:#f9e3e1; --bar:#1f4e78;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141518; --surface:#1d1f23; --surface2:#25282d; --text:#e8e6e3; --muted:#a3a7ad; --line:#33363c;
+    --accent:#8db8e6; --accent-soft:#1f2c3a; --good:#7fcf9b; --good-soft:#1d2e24; --warn:#f0b35e; --warn-soft:#33281a;
+    --bad:#f08a82; --bad-soft:#3a201e; --bar:#8db8e6;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141518; --surface:#1d1f23; --surface2:#25282d; --text:#e8e6e3; --muted:#a3a7ad; --line:#33363c;
+  --accent:#8db8e6; --accent-soft:#1f2c3a; --good:#7fcf9b; --good-soft:#1d2e24; --warn:#f0b35e; --warn-soft:#33281a;
+  --bad:#f08a82; --bad-soft:#3a201e; --bar:#8db8e6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,-apple-system,sans-serif;line-height:1.65;font-size:15px}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 16px 80px}
+header h1{font-size:26px;margin:0 0 4px;letter-spacing:-.3px}
+header p{margin:0;color:var(--muted)}
+h2{font-size:19px;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+h3{font-size:17px;margin:0}
+h4{font-size:14px;margin:18px 0 6px;color:var(--accent)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat b{display:block;font-size:26px;line-height:1.2}
+.stat span{color:var(--muted);font-size:13px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:760px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--surface2);font-weight:500;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.ok{background:var(--good-soft);color:var(--good)}
+.wn{background:var(--warn-soft);color:var(--warn)}
+.no{background:var(--bad-soft);color:var(--bad)}
+.inf{background:var(--accent-soft);color:var(--accent)}
+.grade{font-size:22px;font-weight:700;color:var(--accent);min-width:44px;text-align:center}
+.who{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.who .meta{color:var(--muted);font-size:13px}
+.topic{background:var(--surface2);border-radius:8px;padding:10px 14px;margin:14px 0;font-weight:500}
+.scores{display:grid;grid-template-columns:110px 1fr 28px;gap:6px 10px;align-items:center;font-size:13px;margin-top:8px;max-width:460px}
+.track{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden}
+.fill{height:100%;background:var(--bar);border-radius:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:720px){.two{grid-template-columns:1fr}}
+ul{margin:4px 0;padding-left:20px}
+li{margin:3px 0}
+details{margin-top:16px;border-top:1px dashed var(--line);padding-top:12px}
+summary{cursor:pointer;font-weight:500;color:var(--accent)}
+.mail{white-space:pre-wrap;background:var(--surface2);border-radius:8px;padding:14px;margin-top:10px;font-size:14px}
+button.copy{margin-top:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+button.copy:hover{border-color:var(--accent)}
+.note{font-size:13px;color:var(--muted)}
+a{color:var(--accent)}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0}
+.callout.w{border-color:var(--warn);background:var(--warn-soft)}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+nav.toc a{font-size:13px;text-decoration:none;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AMP 100기 3반 · 미래전략리포트 계획서 정리·평가</h1>
+  <p>지도교수 이승우 · Gmail 기준 정리 (2026.11.18, 미래전략리포트 지도 II 당일)</p>
+  <nav class="toc">
+    <a href="#status">제출 현황</a><a href="#criteria">평가 기준</a>
+    <a href="#p-kjw">김진욱</a><a href="#p-ksg">김성길</a><a href="#p-kby">김보연</a><a href="#p-kyy">김용연</a>
+    <a href="#p-yjg">염진근</a><a href="#p-kmn">김문년</a><a href="#p-hjh">허재혁</a><a href="#missing">미제출</a><a href="#summary">종합</a>
+  </nav>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>9명</b><span>3반 원우 (반별 명단 기준)</span></div>
+  <div class="stat"><b>7명</b><span>계획서 제출 (메일 확인)</span></div>
+  <div class="stat"><b>2명</b><span>미확인: 김병배 · 김수봉</span></div>
+  <div class="stat"><b>12.2(수)</b><span>완성본 제출 마감 → 12.4 반별 우수논문 1편</span></div>
+</div>
+
+<h2 id="status">1. 제출 현황</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>원우</th><th>소속 · 직함</th><th>주제</th><th>제출 시각 (KST)</th><th>형식</th><th>상태 · 메모</th><th>원본</th></tr></thead>
+<tbody>
+<tr><td>김진욱</td><td>㈜어센드미디어 대표</td><td>AI·매체 재편기 광고대행사의 수익구조 전환 전략 (2027~2031)</td><td>10.29(목) 09:15<br><span class="note">행정팀 경유 전달</span></td><td>docx · 10개 장</td><td><span class="pill ok">상세</span> 원 제출 시각 불명</td><td><a href="files/김진욱_계획서.docx">docx</a></td></tr>
+<tr><td>김성길</td><td>우리은행 영업본부장</td><td>디지털·AI 시대 은행 오프라인 점포의 공간 재정의와 채널 전략 (Hub &amp; Spoke)</td><td>10.28(수) 14:05</td><td>docx</td><td><span class="pill ok">상세</span> AI 도움 받았다고 밝힘</td><td><a href="files/김성길_계획서.docx">docx</a></td></tr>
+<tr><td>김보연</td><td>미래에셋증권 이사</td><td>AI·Web3(STO/RWA) 시대 해외기관 인바운드 데스크의 역할 재정의</td><td>10.28(수) 18:01</td><td>docx</td><td><span class="pill ok">구조 완비</span> <span class="pill wn">회신 안 함</span></td><td><a href="files/김보연_계획서.docx">docx</a></td></tr>
+<tr><td>김용연</td><td>유한기술 전무이사</td><td>유한기술 중소형 EPC 사업 5개년 성장 로드맵</td><td>10.28(수) 11:34</td><td>xlsx · 5장 구성</td><td><span class="pill ok">초안 수준</span> 행정팀 cc 주소 오타로 반송</td><td><a href="files/김용연_계획서.xlsx">xlsx</a></td></tr>
+<tr><td>염진근</td><td>스포츠서울 전무</td><td>미디어 환경 변화와 경영 위기 극복을 위한 스포츠서울 미래 성장 전략</td><td>10.26(월) 14:39</td><td>메일 본문 (목차)</td><td><span class="pill wn">목차만</span></td><td><a href="https://mail.google.com/mail/?authuser=sl2986@gmail.com#all/1a176b8c1f1c7700">Gmail 본문</a></td></tr>
+<tr><td>김문년</td><td>IBK벤처투자 준법감시인 겸 위험관리책임자</td><td>AI 시대 벤처캐피탈 산업의 변화와 투자전략</td><td>10.23(금) 15:22</td><td>메일 본문 (목차)</td><td><span class="pill wn">목차만</span> 2회 발송</td><td><a href="https://mail.google.com/mail/?authuser=sl2986@gmail.com#all/1a1676d577c94ba3">Gmail 본문</a></td></tr>
+<tr><td>허재혁</td><td>아키트디자인㈜ 대표이사</td><td>(첨부 docx, 본문에 주제 없음)</td><td>10.27(화) 01:24</td><td>docx</td><td><span class="pill no">내용 미확인</span> 아래 참고</td><td><a href="https://mail.google.com/mail/?authuser=sl2986@gmail.com#all/1a179071a2007e0c">Gmail (첨부)</a></td></tr>
+<tr><td>김병배</td><td>농협중앙회 분사장(상무)</td><td>—</td><td>—</td><td>—</td><td><span class="pill no">메일 없음</span></td><td>—</td></tr>
+<tr><td>김수봉</td><td>지비피엘㈜ 대표이사</td><td>—</td><td>—</td><td>—</td><td><span class="pill no">메일 없음</span></td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<p class="note">계획서 마감은 10.28(수) 18:00(지도교수에게 이메일 직접 제출)입니다. 김보연 원우는 1분 늦었지만 사실상 기한 안에 낸 것으로 봐도 됩니다. 김진욱 원우의 계획서는 행정팀이 10.29에 전달한 것이라 원래 제출 시각은 확인할 수 없습니다. 카카오톡이나 출력물로 낸 원우가 있다면 이 표에는 빠져 있습니다.</p>
+
+<h2 id="criteria">2. 평가 기준</h2>
+<div class="card">
+  <p style="margin-top:0">행정팀 <b><a href="files/미래전략리포트_가이드라인_100기.pdf">「제100기 미래전략리포트 Guide Line」</a></b>의 심사 기준인 <b>경영상 이슈의 중요성 · 문제 해결의 참신성 · 논리성</b>에, 가이드라인이 요구하는 작성 요건 두 가지를 더해 5개 항목(각 5점, 총 25점)으로 평가했습니다.</p>
+  <ul>
+    <li><b>가이드 정합성</b>: 회사 전체 전략이 아니라 미래 환경 요인 1~소수에 집중했는지, 분석 목표연도를 밝혔는지, 비연속 변화(변곡점·전환점·특이점)를 다뤘는지, 문제성·해결성 이슈 → 전략과제 구조를 따랐는지</li>
+    <li><b>구체성·근거</b>: 자사 데이터, 객관적 통계, 실행 단계와 KPI가 있는지</li>
+  </ul>
+  <p class="note" style="margin-bottom:0">계획서 단계 평가라서 분량 차이(목차만 낸 경우)가 점수에 반영돼 있습니다. 최종 점수가 아니라 12.2 완성본까지 무엇을 보완할지 정하기 위한 진단입니다. 등급: A(22+) · B+(19–21) · B(16–18) · C+(13–15) · C(≤12)</p>
+</div>
+
+<h2>3. 원우별 상세 설명 · 평가 · 피드백</h2>
+
+<!-- 김진욱 -->
+<div class="card" id="p-kjw">
+  <div class="who"><div><h3>김진욱 <span class="pill inf">반 우수논문 1순위 후보</span></h3><div class="meta">㈜어센드미디어·어센드웨이브·스튜디오코메타 대표</div></div><div class="grade">A<div class="note">23/25</div></div></div>
+  <div class="topic">수수료에서 성과로 — AI·매체 재편기, 광고대행사의 수익구조 전환 전략 (어센드미디어 2027~2031)</div>
+  <p class="note" style="margin:-6px 0 0">원본: <a href="files/김진욱_계획서.docx">docx</a></p>
+  <h4>내용 요약</h4>
+  <p>매체사(메타 완전 자동화, 네이버 애드부스트·AI 브리핑 광고)가 타겟팅·입찰·소재 제작을 직접 하게 되면서 대행사의 <b>"운영 수수료"의 근거가 약해지는 비연속 변화</b>를 하나의 핵심 요인으로 잡았습니다. 연구 질문은 "어센드미디어는 무엇에 대해 돈을 받는 회사가 되어야 하는가?"입니다. 8가지 실제 경영 고민(네이버 의존, 신규 매체, 인건비, DB 사업화, 커머스, 상장 등)을 제시하고, 외부 분석(광고시장·소비자 여정·매체·AI·인건비·DB 규제·글로벌 광고그룹 재편)과 내부 분석(매출 138억, 영업이익률 6.2%, 수익모델별 이익 공식)을 거쳐 <b>문제성 이슈 4 · 해결성 이슈 4 → 전략과제 4개 → 3단계 로드맵</b>으로 정리했습니다. AX팀 운영 모델(데이터→분석→이슈→LLM→사람)과 KPI까지 설계돼 있습니다.</p>
+  <div class="scores">
+    <span>이슈 중요성</span><div class="track"><div class="fill" style="width:100%"></div></div><b>5</b>
+    <span>참신성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>논리성</span><div class="track"><div class="fill" style="width:100%"></div></div><b>5</b>
+    <span>가이드 정합성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>구체성·근거</span><div class="track"><div class="fill" style="width:100%"></div></div><b>5</b>
+  </div>
+  <div class="two">
+    <div><h4>강점</h4><ul>
+      <li>환경 요인을 "광고 운영의 AI 자동화" 하나로 좁혀 가이드라인 취지를 정확히 따름</li>
+      <li>"수수료 모델에서는 AI 효율 개선의 이익이 광고주·매체로 가고, 성과형 모델에서는 회사에 남는다"는 핵심 통찰이 날카롭고 독창적임</li>
+      <li>이슈 도출 → 전략과제 → 로드맵 → KPI로 이어지는 논리 구조가 가이드라인 양식과 일치</li>
+      <li>공공 통계, 업계 리포트, 기업 실적 등 근거가 풍부하고 출처 표기도 충실함</li>
+    </ul></div>
+    <div><h4>보완점</h4><ul>
+      <li><b>분량</b>: 지금 10개 장 → 본문 3~5쪽으로 줄여야 함. 8가지 고민·4개 과제가 다시 범위를 넓혀 "1개 요인 집중"을 흐림</li>
+      <li><b>수치 불일치</b>: 매출 138억/170억/180억, 인원 61·64·65명(본인도 표시함) → 기준 연도·법인 통일 필요</li>
+      <li><b>정량 목표 부재</b>: 2031년 성과형 매출 비중, 1인당 매출총이익 목표치 등 "전환 완료"의 정의가 없음</li>
+      <li><b>성과형 과금의 리스크</b>: 매체비 변동·DB 품질 리스크를 대행사가 떠안는 구조라서 단위경제성(unit economics)과 하방 시나리오 필요</li>
+      <li>"가설"로 표시된 주도 시장 순위·매체 판단은 근거와 의사결정 기준을 분리해서 제시</li>
+    </ul></div>
+  </div>
+  <details open><summary>피드백 메일 초안</summary>
+<div class="mail" id="m-kjw">김진욱 원우님,
+
+미래전략리포트 계획서 잘 읽었습니다. "광고 운영의 AI 자동화" 하나의 환경 요인에 집중해서 "무엇에 대해 돈을 받는 회사가 되어야 하는가"를 묻는 구성이 가이드라인 취지에 정확히 맞고, 논리 전개와 근거도 매우 충실합니다. 특히 "같은 AI 역량이라도 수수료 모델에서는 효율 개선의 이익이 광고주·매체로 가고, 성과형 모델에서는 회사에 남는다"는 통찰이 이 리포트의 핵심 메시지가 될 수 있다고 생각합니다.
+
+완성본에서는 아래 네 가지를 보완해 주시면 좋겠습니다.
+
+1. 분량 압축: 최종본은 본문 3~5쪽입니다. 8가지 고민과 4개 과제를 모두 다루기보다, 수익구조 전환에 직결되는 과제 2개(예: AX 기반 운영 혁신 + DB 성과형 사업화)를 본문에 두고 나머지는 별첨으로 옮기시길 권합니다.
+2. 수치 통일: 매출(138억/170억/180억)과 인원(61·64·65명)의 기준 연도·법인을 하나로 맞춰 주세요.
+3. "전환 완료"의 정량 목표: 2031년 성과형 매출 비중, 1인당 매출총이익, 운영 수수료율 하락 시나리오별 영업이익률 등 두세 개 숫자로 목표를 정의해 주시면 설득력이 크게 높아집니다.
+4. 성과형 과금의 리스크: 취급액 1억 원 기준으로 수수료 모델과 DB 성과형 모델의 손익을 비교하는 표를 하나 넣고, 매체 단가 상승이나 DB 품질 저하 때의 하방 시나리오를 함께 보여 주세요.
+
+현재 수준으로도 반 대표 우수논문 후보로 충분히 기대가 됩니다. 수고 많으셨습니다!
+
+이승우 드림</div>
+  <button class="copy" data-target="m-kjw">메일 초안 복사</button>
+  </details>
+</div>
+
+<!-- 김성길 -->
+<div class="card" id="p-ksg">
+  <div class="who"><div><h3>김성길 <span class="pill inf">반 우수논문 2순위 후보</span></h3><div class="meta">우리은행 영업본부장</div></div><div class="grade">A<div class="note">22/25</div></div></div>
+  <div class="topic">디지털·AI 시대, 은행 오프라인 점포의 공간 재정의와 채널 전략 — 거점(Hub) '솔루션 &amp; 비즈니스 라운지' + 위성(Spoke) F&amp;B Shop-in-Shop</div>
+  <p class="note" style="margin:-6px 0 0">원본: <a href="files/김성길_계획서.docx">docx</a></p>
+  <h4>내용 요약</h4>
+  <p>일상 금융의 비대면화로 점포에 갈 이유(Reason-to-Visit)가 사라졌는데, 은행들이 비용 절감 위주의 점포 통폐합만 하다 보니 고객 접점·로열티가 줄어드는 '축소 균형'에 빠졌다는 문제의식입니다. 우리은행 채널 현황(대형 점포의 평당 생산성 악화, Two Chairs W·BIZ프라임센터 같은 특화 채널의 고립)과 <b>과거 공동영업체계(VG)의 무임승차 교훈</b>을 내부 분석으로, 국내외 은행 공간 실험(KB·하나·신한, Capital One Café, JP모건)을 외부 분석으로 다뤘습니다. 해결안은 ① 거점의 프라이빗 컨설팅·비즈니스 라운지·RM-PB Co-working ② 위성 점포의 F&amp;B 전대차 제휴로 고정비 절감 ③ 연계 기여도(Referral) KPI ④ 5~10개소 파일럿입니다.</p>
+  <div class="scores">
+    <span>이슈 중요성</span><div class="track"><div class="fill" style="width:100%"></div></div><b>5</b>
+    <span>참신성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>논리성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>가이드 정합성</span><div class="track"><div class="fill" style="width:100%"></div></div><b>5</b>
+    <span>구체성·근거</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+  </div>
+  <div class="two">
+    <div><h4>강점</h4><ul>
+      <li>"사업 범위는 점포 채널, 목표연도는 2027~2030"으로 가이드라인 요건을 정확히 충족</li>
+      <li>VG 제도 실패를 진단하고 KPI 설계에 반영한 점이 현장 경험에서 나온 가장 가치 있는 부분</li>
+      <li>공간 전략에서 KPI·인센티브 같은 조직 메커니즘까지 이어지는 실행 관점</li>
+      <li>장애요인(리모델링 비용, 직무 저항)과 단계적 확산 방안 제시</li>
+    </ul></div>
+    <div><h4>보완점</h4><ul>
+      <li>"일상 금융업무 90% 이상 비대면", "운영비 40%·고정비 30% 절감" 같은 수치의 출처·산출 근거가 없음</li>
+      <li>점포 수 추이, 지점당 수익성 등 정량 데이터 필요(공시·은행연합회 통계)</li>
+      <li>금융소외계층(고령층) 접근성 문제를 제기만 하고 해법이 없음 → 점포 폐쇄 관련 당국 절차와 공동점포 등 대안 검토</li>
+      <li>은행 공간 전대·제휴의 규제 적합성(부수·겸영업무) 검토 필요</li>
+      <li>Referral 5:5 쉐어의 이중계상·실적 게이밍 방지 장치</li>
+      <li>AI 도움을 받았다고 밝힘 → 본부장으로서의 현장 사례·관점을 더 넣어 "본인 목소리" 강화</li>
+    </ul></div>
+  </div>
+  <details open><summary>피드백 메일 초안</summary>
+<div class="mail" id="m-ksg">김성길 원우님,
+
+계획서를 다시 꼼꼼히 읽어 보았습니다. 방향은 잘 잡으셨으니 걱정하지 않으셔도 됩니다. 점포 채널이라는 구체적 범위와 2027~2030년이라는 목표연도를 정하신 점, 그리고 과거 공동영업체계(VG)의 무임승차 경험을 KPI 설계에 반영하신 점이 이 리포트의 가장 큰 강점입니다. 이 부분은 AI가 쓸 수 없는, 현장 리더만 쓸 수 있는 내용입니다.
+
+완성본에서는 아래를 보완해 주시면 좋겠습니다.
+
+1. 수치의 근거: "일상 업무 90% 이상 비대면", "운영비 40%·고정비 30% 절감"에 출처나 계산 과정을 붙여 주세요. 위성 점포 1개의 간단한 손익(임차료·인건비 before/after) 표 하나면 충분합니다.
+2. 정량 데이터: 최근 5년 국내 시중은행 점포 수 추이와 우리은행 채널 현황(거점·특화채널 수)을 표 하나로 정리해 주세요.
+3. 금융소외 대응: 문제 제기에서 언급하신 고령층 접근성에 대해 공동점포, 이동점포, 디지털 창구 등 Spoke 설계 안에서의 대안을 한 단락 넣어 주시면 논리가 완결됩니다.
+4. 규제·실행 리스크: F&B 공간 전대 제휴의 규제 적합성과 Referral 실적 쉐어의 이중계상 방지 장치를 장애요인에 추가해 주세요.
+5. 본인 목소리: 영업본부장으로서 직접 본 점포 사례 한두 개(잘 된 곳/안 된 곳)를 넣으면 설득력이 훨씬 커집니다.
+
+반 우수논문으로도 손색없는 주제입니다. 수고 많으셨습니다!
+
+이승우 드림</div>
+  <button class="copy" data-target="m-ksg">메일 초안 복사</button>
+  </details>
+</div>
+
+<!-- 김보연 -->
+<div class="card" id="p-kby">
+  <div class="who"><div><h3>김보연</h3><div class="meta">미래에셋증권 이사 · Head of One-Asia Equity Sales</div></div><div class="grade">B+<div class="note">19/25</div></div></div>
+  <div class="topic">Web3·RWA 및 AI 융복합 시대, 해외기관 인바운드 데스크(Inbound Desk)의 역할 재정의 및 미래 성장 전략 (2027~2030)</div>
+  <p class="note" style="margin:-6px 0 0">원본: <a href="files/김보연_계획서.docx">docx</a></p>
+  <h4>내용 요약</h4>
+  <p>글로벌 기관 수수료 하락과 단순 브로커리지 중심 영업의 정체라는 한계에서 출발해, <b>AI(초개인화 세일즈·KYC/AML 자동화)</b>와 <b>Web3(토큰증권·실물자산 토큰화)</b> 두 축의 변화를 <b>변곡점·특이점·전환점</b> 표로 정리했습니다. 수동적 'Service Desk'를 'AI 스마트 세일즈 &amp; 크로스보더 STO/RWA Gateway'로 바꾸는 것이 목표이고, 과제 1(AI Inbound Sales Intelligence System), 과제 2(크로스보더 STO/RWA 발행·유통 인프라), 3단계 로드맵을 5쪽 목차로 제시했습니다.</p>
+  <div class="scores">
+    <span>이슈 중요성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>참신성</span><div class="track"><div class="fill" style="width:100%"></div></div><b>5</b>
+    <span>논리성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>가이드 정합성</span><div class="track"><div class="fill" style="width:60%"></div></div><b>3</b>
+    <span>구체성·근거</span><div class="track"><div class="fill" style="width:60%"></div></div><b>3</b>
+  </div>
+  <div class="two">
+    <div><h4>강점</h4><ul>
+      <li>가이드라인의 "변곡점·전환점·특이점"을 직접 표로 구조화한 유일한 계획서</li>
+      <li>사업 범위를 인바운드 데스크라는 기능 단위로 좁힘</li>
+      <li>외국인 통합계좌 노하우 → 크로스보더 STO 온보딩으로 이어지는 연결 아이디어가 참신함</li>
+    </ul></div>
+    <div><h4>보완점</h4><ul>
+      <li><b>요인이 두 개(AI + Web3)</b>라서 깊이가 분산됨. 하나를 주 요인으로, 다른 하나를 수단으로 위계를 정해야 함</li>
+      <li>내부 데이터 부재: 데스크 수익 구성, 기관 고객 수, 수수료율 추이 등</li>
+      <li>"2026년 STO 법제화 완성"의 현재 시행 상태와 비거주자 투자 관련 외환·등록 규제를 사실 확인 필요</li>
+      <li>외국인 투자 접근성 개선 같은 더 가까운 제도 변화와의 연결 여부 검토</li>
+      <li>기대효과가 정성적 → 신규 수수료원 규모, 파일럿 1건 정의 필요</li>
+    </ul></div>
+  </div>
+  <details open><summary>피드백 메일 초안</summary>
+<div class="mail" id="m-kby">김보연 원우님,
+
+미래전략리포트 계획서 잘 받았습니다. 회신이 늦어 죄송합니다. 가이드라인의 "변곡점·특이점·전환점"을 표로 정리하신 것과, 외국인 통합계좌 운영 노하우를 크로스보더 토큰증권 온보딩으로 연결하신 아이디어가 특히 좋았습니다. 인바운드 데스크라는 기능 단위로 범위를 좁히신 것도 가이드라인 취지에 맞습니다.
+
+완성본에서는 아래를 보완해 주시면 좋겠습니다.
+
+1. 요인의 위계: 지금은 AI와 Web3 두 변화를 나란히 다루고 있어 3~5쪽 안에서 깊이가 분산될 수 있습니다. 예를 들어 "STO/RWA 크로스보더 Gateway"를 핵심 요인으로 두고 AI는 이를 가능하게 하는 수단(KYC/AML 자동화, 세일즈 인텔리전스)으로 배치하면 메시지가 훨씬 선명해집니다.
+2. 내부 현황 수치: 데스크 수익 구성(브로커리지 비중), 해외기관 고객 수, 수수료율 추이 등 공개 가능한 범위의 지표를 넣어 "구조적 한계"를 수치로 보여 주세요.
+3. 제도 사실 확인: 토큰증권 제도의 현재 시행 단계와 비거주자 투자 시의 외환·등록 요건을 최신 기준으로 확인해 장애요인에 반영해 주세요.
+4. 파일럿 정의: "해외기관 대상 국내 ○○ RWA 1건 유통" 같이 첫 테스트베드를 구체적으로 정하고, 3년 후 신규 수수료 목표를 숫자로 제시해 주시면 좋겠습니다.
+
+증권업계에서도 주목할 만한 주제라 완성본이 기대됩니다. 수고 많으셨습니다!
+
+이승우 드림</div>
+  <button class="copy" data-target="m-kby">메일 초안 복사</button>
+  </details>
+</div>
+
+<!-- 김용연 -->
+<div class="card" id="p-kyy">
+  <div class="who"><div><h3>김용연</h3><div class="meta">유한기술주식회사 전무이사 · 국내사업본부</div></div><div class="grade">B<div class="note">18/25</div></div></div>
+  <div class="topic">유한기술 중소형 EPC 사업 5개년(2026~2030) 성장 로드맵 — O&amp;M 기업에서 친환경 중소형 EPCM 전문기업으로</div>
+  <p class="note" style="margin:-6px 0 0">원본: <a href="files/김용연_계획서.xlsx">xlsx</a></p>
+  <h4>내용 요약</h4>
+  <p>석유화학 산업이 대규모 신증설(Mega EPC)에서 <b>탄소중립 대응·노후 설비 개조(Revamping) 중심</b>으로 전환되는 흐름을 배경으로, 30년간 쌓은 O&amp;M·특수공사 역량에 엔지니어링·PM 역량을 더해 중소형 EPC를 새 성장 동력으로 삼자는 내용입니다. 가이드라인의 5쪽 구성 예시를 그대로 따라 내부 SWOT(현장 네트워크·Constructability 강점, 설계 자립도·PM 역량 약점), 외부 기회·위협(친환경 개조 수요, 대형 EPC의 중소 프로젝트 기피), 3단계 Phase 솔루션, 장애요인 2개, 기대효과를 정리했습니다. 계획서라기보다 <b>완성본 초안</b>에 가깝습니다.</p>
+  <div class="scores">
+    <span>이슈 중요성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>참신성</span><div class="track"><div class="fill" style="width:60%"></div></div><b>3</b>
+    <span>논리성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>가이드 정합성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>구체성·근거</span><div class="track"><div class="fill" style="width:60%"></div></div><b>3</b>
+  </div>
+  <div class="two">
+    <div><h4>강점</h4><ul>
+      <li>본인 회사·사업부 단위의 실제 의사결정 과제로, 가이드라인이 권장하는 형태</li>
+      <li>"O&amp;M 기업이 가동 상태를 가장 잘 안다"는 차별화 논리(Constructability)가 설득력 있음</li>
+      <li>단계별 로드맵과 장애요인 대응이 이미 갖춰짐</li>
+    </ul></div>
+    <div><h4>보완점</h4><ul>
+      <li><b>숫자가 거의 없음</b>: 매출 구성, O&amp;M 대비 EPC 이익률, 친환경 개조 시장 규모, 5년 매출 목표</li>
+      <li>국내 석유화학 업계의 설비 감축·구조조정 흐름은 위협이자 기회(전환·해체 공사)인 핵심 비연속 변화인데 반영이 약함</li>
+      <li>EPC 전환의 핵심 리스크인 일괄도급 원가 초과, 지체상금, 이행보증, 운전자본 부담이 장애요인에 빠짐</li>
+      <li>서술이 일반론에 가까움 → 자사 수행 프로젝트 사례 1~2건으로 구체화</li>
+      <li>용어 정리: EPC/EPCM 혼용, "HVO(수소화기름)" → 수소화식물성오일</li>
+      <li>엑셀 → 워드/한글 3~5쪽 형식으로 변환</li>
+    </ul></div>
+  </div>
+  <details open><summary>피드백 메일 초안</summary>
+<div class="mail" id="m-kyy">김용연 전무님,
+
+미래전략리포트를 이미 완성본에 가까운 수준으로 정리해 주셔서 감사합니다. 가이드라인의 5단 구성을 충실히 따르셨고, "유지보수 기업이 플랜트 가동 상태를 가장 잘 알기 때문에 개조 EPC에서 시공 리스크를 미리 잡을 수 있다"는 차별화 논리가 특히 설득력 있습니다.
+
+12월 2일 완성본에서는 아래를 보완해 주시면 좋겠습니다.
+
+1. 숫자로 말하기: 현재 매출에서 O&M과 공사의 비중, O&M 대비 EPC 이익률, 친환경 설비 개조 시장 규모, 5년 후 EPC 매출 목표 등 핵심 수치 3~5개를 넣어 주세요. 공개가 어려우면 비율이나 지수로 표현하셔도 됩니다.
+2. 비연속 변화 강조: 최근 국내 석유화학 업계의 설비 감축·구조조정 흐름은 발주 축소라는 위협이면서 전환·개조 공사라는 기회이기도 합니다. 이 변화를 리포트의 핵심 변곡점으로 놓으시면 주제의 시의성이 크게 높아집니다.
+3. EPC 고유 리스크: 일괄도급 원가 초과, 공기 지연 시 지체상금, 이행보증과 운전자본 부담은 O&M 기업이 EPC로 갈 때 가장 큰 장애요인입니다. 장애요인과 대응에 추가해 주세요.
+4. 자사 사례: 실제 수행했던 디바틀넥킹이나 배관 개조 프로젝트 1~2건을 짧게 소개하면 Phase 1의 실현 가능성이 분명해집니다.
+5. 형식: 최종본은 엑셀이 아니라 워드 또는 한글 3~5쪽(표 포함)으로 부탁드립니다. EPC/EPCM 용어도 하나로 통일해 주세요.
+
+참고로 처음 보내주신 메일의 행정팀 주소가 "yonse.ac.kr"로 잘못 입력되어 반송되었습니다. 완성본은 amp.ysb@yonsei.ac.kr로 함께 보내 주시면 됩니다.
+
+수고 많으셨습니다!
+
+이승우 드림</div>
+  <button class="copy" data-target="m-kyy">메일 초안 복사</button>
+  </details>
+</div>
+
+<!-- 염진근 -->
+<div class="card" id="p-yjg">
+  <div class="who"><div><h3>염진근</h3><div class="meta">스포츠서울 전무</div></div><div class="grade">C+<div class="note">13/25</div></div></div>
+  <div class="topic">미디어 환경 변화와 경영 위기 극복을 위한 스포츠서울 미래 성장 전략 — 레거시 미디어에서 디지털 IP 기반 생태계로</div>
+  <p class="note" style="margin:-6px 0 0">원본: <a href="https://mail.google.com/mail/?authuser=sl2986@gmail.com#all/1a176b8c1f1c7700">Gmail 본문</a></p>
+  <h4>내용 요약</h4>
+  <p>메일 본문에 주제·목적·5개 파트 목차만 적었습니다. 종이신문과 레거시 미디어의 약화, 경영 불안정 요인을 분석하고 <b>디지털 IP 기반 생태계 전환</b>을 위한 미래전략을 제시하겠다는 내용입니다. 파트 구성(배경 → 내부 → 외부 → 해결방안 → 정리)은 가이드라인 예시와 같습니다.</p>
+  <div class="scores">
+    <span>이슈 중요성</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b>
+    <span>참신성</span><div class="track"><div class="fill" style="width:60%"></div></div><b>3</b>
+    <span>논리성</span><div class="track"><div class="fill" style="width:40%"></div></div><b>2</b>
+    <span>가이드 정합성</span><div class="track"><div class="fill" style="width:40%"></div></div><b>2</b>
+    <span>구체성·근거</span><div class="track"><div class="fill" style="width:40%"></div></div><b>2</b>
+  </div>
+  <div class="two">
+    <div><h4>강점</h4><ul>
+      <li>본인 회사가 실제로 처한 생존 문제라서 이슈의 절실함이 큼</li>
+      <li>"디지털 IP"라는 전환 방향 자체는 적절함</li>
+    </ul></div>
+    <div><h4>보완점</h4><ul>
+      <li>목차가 가이드라인 예시를 거의 그대로 옮긴 수준 → 핵심 질문과 가설이 없음</li>
+      <li>"디지털 IP 기반 생태계"의 정의 부재: 어떤 IP를, 누구에게, 어떻게 팔 것인가</li>
+      <li>분석 목표연도 미기재</li>
+      <li>하나의 비연속 요인 미선정(예: 포털·AI 검색의 뉴스 유통 변화, 스포츠 콘텐츠 숏폼화)</li>
+      <li>매출 구조(광고·구독·행사·콘텐츠 판매) 같은 내부 데이터 필요</li>
+    </ul></div>
+  </div>
+  <details open><summary>피드백 메일 초안</summary>
+<div class="mail" id="m-yjg">염진근 원우님,
+
+계획서 잘 받았습니다. 회사가 실제로 마주한 문제를 정면으로 다루시는 주제라 의미가 큽니다. 다만 지금 목차는 가이드라인 예시 구성을 그대로 따른 형태라, 완성본까지 "무엇을 주장할 것인가"를 먼저 정하시면 좋겠습니다.
+
+1. 핵심 요인 하나 선정: 레거시 미디어의 위기 전체를 다루기보다, 예를 들어 "포털·AI 검색이 기사를 요약해 보여 주면서 생기는 트래픽 감소" 또는 "스포츠 콘텐츠 소비의 숏폼·클립화" 중 하나를 스포츠서울의 가장 중요한 비연속 변화로 정해 주세요.
+2. "디지털 IP" 정의: 스포츠서울이 가진 자산(오랜 기간 축적한 기사·사진 아카이브, 기자·취재 네트워크, 시상식·이벤트, 브랜드)을 목록으로 만들고, 각각을 누구에게(독자·광고주·플랫폼·AI 기업·지자체) 어떤 방식(라이선스·구독·행사·커머스)으로 수익화할지 표 하나로 정리해 주세요.
+3. 목표연도와 숫자: 3년 또는 5년 목표를 정하고, 현재 매출 구성(광고/콘텐츠/행사)과 목표 구성을 비교해 주시면 전략의 방향이 한눈에 보입니다.
+4. 실행 단계와 장애요인: 우선 시작할 1~2개 사업(파일럿)과 조직·인력·재무 측면의 장애요인을 함께 제시해 주세요.
+
+오늘 지도 시간에 방향을 같이 잡아 보면 좋겠습니다. 수고 많으셨습니다!
+
+이승우 드림</div>
+  <button class="copy" data-target="m-yjg">메일 초안 복사</button>
+  </details>
+</div>
+
+<!-- 김문년 -->
+<div class="card" id="p-kmn">
+  <div class="who"><div><h3>김문년</h3><div class="meta">IBK벤처투자 준법감시인 겸 위험관리책임자</div></div><div class="grade">C<div class="note">11/25</div></div></div>
+  <div class="topic">AI 시대의 벤처캐피탈 산업의 변화와 투자전략</div>
+  <p class="note" style="margin:-6px 0 0">원본: <a href="https://mail.google.com/mail/?authuser=sl2986@gmail.com#all/1a1676d577c94ba3">Gmail 본문</a></p>
+  <h4>내용 요약</h4>
+  <p>메일 본문에 제목과 5개 장 목차(서론 / AI 시대 산업구조 변화: 내부·외부 분석 / AI가 VC 산업에 미치는 영향 / AI 시대의 투자전략 / 결론)만 적었습니다. 가장 먼저(10.23) 제출했지만 내용은 목차 수준입니다. 같은 날 거의 빈 메일을 한 번 더 보냈습니다.</p>
+  <div class="scores">
+    <span>이슈 중요성</span><div class="track"><div class="fill" style="width:60%"></div></div><b>3</b>
+    <span>참신성</span><div class="track"><div class="fill" style="width:40%"></div></div><b>2</b>
+    <span>논리성</span><div class="track"><div class="fill" style="width:40%"></div></div><b>2</b>
+    <span>가이드 정합성</span><div class="track"><div class="fill" style="width:40%"></div></div><b>2</b>
+    <span>구체성·근거</span><div class="track"><div class="fill" style="width:40%"></div></div><b>2</b>
+  </div>
+  <div class="two">
+    <div><h4>강점</h4><ul>
+      <li>AI가 VC 산업에 미치는 영향은 시의성이 높은 주제</li>
+      <li>가장 먼저 제출하는 등 성실성</li>
+    </ul></div>
+    <div><h4>보완점</h4><ul>
+      <li>주제가 산업 전체 수준으로 넓음 → 가이드라인은 자사·기능 단위 구체화를 권장</li>
+      <li>Ⅱ장 "산업구조 변화" 아래에 "내부 분석"이 들어가 구조가 어긋남(내부 = 자사)</li>
+      <li>목표연도, 핵심 비연속 요인, 자사 이슈 미정</li>
+      <li>본인 직무(준법감시·위험관리)의 차별적 관점을 살리지 못함</li>
+    </ul></div>
+  </div>
+  <details open><summary>피드백 메일 초안</summary>
+<div class="mail" id="m-kmn">김문년 원우님,
+
+계획서를 가장 먼저 보내 주셔서 감사합니다. "AI 시대 벤처캐피탈"은 시의성이 높은 주제입니다. 다만 지금 제목은 산업 전체를 다루는 범위라서, 가이드라인이 권하는 "자사 차원의 이슈와 전략"으로 좁혀 주시면 훨씬 좋은 리포트가 될 것 같습니다.
+
+1. 원우님만의 관점으로 좁히기: 준법감시인 겸 위험관리책임자이시니, 예를 들어 "AI 투자 과열(밸류에이션 급등) 국면에서 IBK벤처투자의 포트폴리오 리스크관리 체계" 또는 "AI 기반 딜소싱·심사·사후관리 도입 시 내부통제 설계"처럼 본인 업무와 맞닿은 하나의 과제로 정하시길 권합니다. 이 관점은 다른 원우들이 쓸 수 없는 차별점이 됩니다.
+2. 구조 정리: 현재 Ⅱ장 "AI 시대의 산업구조 변화" 아래에 내부 분석이 있는데, 내부 분석은 IBK벤처투자의 현황(펀드 규모, 투자 업종 구성, 정책금융 계열로서의 역할), 외부 분석은 시장·기술·정책 변화로 나누어 주세요.
+3. 목표연도와 데이터: 향후 3~5년 중 목표연도를 정하고, 국내 VC 신규 투자 중 AI 분야 비중, 최근 대형 AI 투자 사례 등 공개 통계(벤처캐피탈협회, 중소벤처기업부, 스타트업 투자 데이터 플랫폼)를 근거로 활용해 주세요.
+4. 전략과제 2~3개: 문제성 이슈(예: 밸류에이션 리스크, 회수 지연)와 해결성 이슈(예: AI 심사 도구, 공동투자)를 묶어 전략과제로 만들고 단계별 실행 방향을 제시해 주세요.
+
+오늘 지도 시간에 주제를 함께 좁혀 보면 좋겠습니다. 수고 많으셨습니다!
+
+이승우 드림</div>
+  <button class="copy" data-target="m-kmn">메일 초안 복사</button>
+  </details>
+</div>
+
+<!-- 허재혁 -->
+<div class="card" id="p-hjh">
+  <div class="who"><div><h3>허재혁</h3><div class="meta">아키트디자인 주식회사 대표이사</div></div><div class="grade" style="color:var(--muted)">—<div class="note">미평가</div></div></div>
+  <div class="callout w"><b>첨부 내용 확인 필요.</b> 10.27(화) 01:24에 「미래전략리포트_계획서_허재혁.docx」를 첨부해 제출했고 10.27에 수신 확인 회신도 보내셨습니다. 메일 본문에는 서명만 있고 주제가 적혀 있지 않습니다. 이 메일은 크기가 작아 첨부 파일을 따로 꺼내 저장할 수 없었기 때문에 <b>내용은 평가하지 못했습니다.</b> 첨부를 이 폴더에 저장해 주시면 다른 원우와 같은 기준으로 평가와 피드백을 추가하겠습니다.</div>
+  <details><summary>잠정 피드백 메일 초안 (주제 확인 전, 공통 체크리스트)</summary>
+<div class="mail" id="m-hjh">허재혁 원우님,
+
+미래전략리포트 계획서 잘 받았습니다. 12월 2일 완성본 제출 전에 아래 항목을 한 번 점검해 주시면 좋겠습니다.
+
+1. 하나의 핵심 요인: 회사 전체 전략이 아니라, 아키트디자인의 사업에 가장 큰 영향을 줄 미래 환경 변화 하나(또는 소수)에 집중했는지
+2. 목표연도: 향후 3년, 5년 등 분석 목표연도를 밝혔는지
+3. 비연속 변화: 업계의 변곡점·전환점(기술, 규제, 고객 행동 변화 등)을 근거와 함께 제시했는지
+4. 이슈 → 전략과제: 문제성·해결성 이슈를 도출하고 이를 묶어 전략과제와 단계별 실행 방향으로 연결했는지
+5. 숫자와 사례: 자사 매출 구성, 주요 프로젝트 사례, 시장 통계 등 근거 자료를 넣었는지
+6. 분량: 본문 3~5쪽(표지·별첨 제외)
+
+오늘 지도 시간에 구체적으로 말씀 나누겠습니다. 수고 많으셨습니다!
+
+이승우 드림</div>
+  <button class="copy" data-target="m-hjh">메일 초안 복사</button>
+  </details>
+</div>
+
+<h2 id="missing">4. 미제출(메일 미확인) 원우</h2>
+<div class="card">
+  <ul>
+    <li><b>김병배</b> — 농협중앙회 분사장(상무)</li>
+    <li><b>김수봉</b> — 지비피엘㈜ 대표이사</li>
+  </ul>
+  <p class="note">Gmail(이름·명단 이메일 주소로 검색)에서 계획서 제출 메일을 찾지 못했습니다. 다른 경로(카카오톡·행정팀·출력물)로 냈을 수 있으니 오늘 지도 시간에 확인해 보세요. 리포트는 수료 필수 요건이라 12.2 완성본 마감을 다시 안내할 필요가 있습니다.</p>
+<div class="mail" id="m-miss">○○○ 원우님,
+
+미래전략리포트는 수료 요건이라 안내드립니다. 아직 계획서를 메일로 받지 못한 것 같은데, 혹시 다른 경로로 제출하셨다면 알려 주세요.
+
+완성본은 12월 2일(수)까지 저에게 이메일로 보내 주시면 됩니다. 분량은 본문 3~5쪽이고, 회사 전체 전략보다는 사업에 영향을 줄 미래 환경 변화 한두 개를 골라 자사 이슈와 전략과제로 정리하는 형식입니다(구성: 과제 배경 → 내부 분석 → 외부 분석 → 해결안과 장애요인 → 정리). 주제 정하는 데 도움이 필요하시면 편하게 연락 주세요.
+
+이승우 드림</div>
+  <button class="copy" data-target="m-miss">메일 초안 복사</button>
+</div>
+
+<h2 id="summary">5. 종합</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>원우</th><th>이슈 중요성</th><th>참신성</th><th>논리성</th><th>가이드 정합성</th><th>구체성·근거</th><th>합계</th><th>등급</th></tr></thead>
+<tbody>
+<tr><td>김진욱</td><td>5</td><td>4</td><td>5</td><td>4</td><td>5</td><td><b>23</b></td><td>A</td></tr>
+<tr><td>김성길</td><td>5</td><td>4</td><td>4</td><td>5</td><td>4</td><td><b>22</b></td><td>A</td></tr>
+<tr><td>김보연</td><td>4</td><td>5</td><td>4</td><td>3</td><td>3</td><td><b>19</b></td><td>B+</td></tr>
+<tr><td>김용연</td><td>4</td><td>3</td><td>4</td><td>4</td><td>3</td><td><b>18</b></td><td>B</td></tr>
+<tr><td>염진근</td><td>4</td><td>3</td><td>2</td><td>2</td><td>2</td><td><b>13</b></td><td>C+</td></tr>
+<tr><td>김문년</td><td>3</td><td>2</td><td>2</td><td>2</td><td>2</td><td><b>11</b></td><td>C</td></tr>
+<tr><td>허재혁</td><td colspan="7" class="note">첨부 확인 후 평가</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="two" style="margin-top:16px">
+  <div class="card">
+    <h4 style="margin-top:0">반 우수논문(12.4 선정) 잠정 의견</h4>
+    <ol>
+      <li><b>김진욱</b>: 논리 구조, 근거, 통찰 모두 가장 완성도가 높음. 단 5쪽 압축이 관건</li>
+      <li><b>김성길</b>: 현장 경험(VG 교훈)이 녹아 있고 주제의 보편성이 높아 발표 적합성이 좋음</li>
+      <li>다크호스 <b>김보연</b>: 요인 위계를 정리하고 수치를 보강하면 참신성에서 앞설 수 있음</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h4 style="margin-top:0">반 공통 피드백 (오늘 지도 II에서 전달)</h4>
+    <ul>
+      <li>회사 전체가 아니라 <b>미래 요인 1개</b>에 집중</li>
+      <li><b>목표연도</b> 명시(3년/5년)</li>
+      <li>모든 수치에 <b>출처·산출 근거</b></li>
+      <li><b>전환 완료의 정량 목표</b> 2~3개(매출 비중, 이익률 등)</li>
+      <li>AI로 초안을 만들었다면 <b>본인 현장 사례와 판단</b>을 반드시 추가</li>
+      <li>본문 3~5쪽, 상세 자료는 별첨</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h4 style="margin-top:0">교수님 할 일</h4>
+  <ul>
+    <li>김보연 원우에게 계획서 수신 회신 보내기(현재 회신 기록 없음)</li>
+    <li>허재혁 원우 첨부 docx 열어서 확인하기</li>
+    <li>김병배·김수봉 원우 제출 여부 확인하고 마감 안내하기</li>
+    <li>김용연 원우에게 행정팀 주소 오타(yonse.ac.kr) 알려 주기(메일 초안에 포함됨)</li>
+    <li>12.2(수) 완성본 접수 → 12.4(금)까지 반별 우수논문 1편 선정 → 12.9(수) 경영관 B101 발표</li>
+  </ul>
+</div>
+
+<p class="note">원본 파일은 <code>files/</code> 폴더에 있습니다. Gmail 링크는 sl2986@gmail.com 계정으로 로그인해야 열립니다. 자료 출처: Gmail(sl2986@gmail.com) 계획서 제출 메일과 첨부(docx·xlsx), 행정팀 「제100기 미래전략리포트 Guide Line」, 「반별명단_100기」. 점수는 계획서 단계의 진단 의견입니다.</p>
+</div>
+
+<script>
+document.querySelectorAll('button.copy').forEach(function(b){
+  b.addEventListener('click', function(){
+    var t = document.getElementById(b.dataset.target).innerText;
+    var done = function(){ var o=b.textContent; b.textContent='복사됨'; setTimeout(function(){b.textContent=o;},1500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function(){ fallback(t); done(); });
+    } else { fallback(t); done(); }
+  });
+});
+function fallback(t){
+  var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select();
+  try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>
